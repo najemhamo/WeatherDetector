@@ -1,3 +1,6 @@
+using Models;
+using Newtonsoft.Json.Linq;
+
 namespace Services
 {
     public class WeatherService : IWeatherService
@@ -10,7 +13,8 @@ namespace Services
             _httpClient = httpClient;
             _configuration = configuration;
         }
-        public async Task<string> GetWeatherAsync(string city)
+
+        public async Task<WeatherData> GetWeatherAsync(string city)
         {
             var apiKey = _configuration["WeatherApi:ApiKey"];
             var baseUrl = _configuration["WeatherApi:BaseUrl"];
@@ -20,11 +24,33 @@ namespace Services
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsStringAsync();
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var json = JObject.Parse(jsonString);
+
+                var temperatureKelvin = (double?)json["main"]?["temp"] ?? 0;
+                var feelsLikeKelvin = (double?)json["main"]?["feels_like"] ?? 0;
+
+                var weatherData = new WeatherData
+                {
+                    City = json["name"]?.ToString(),
+                    Condition = json["weather"]?[0]?["main"]?.ToString(),
+                    Country = json["sys"]?["country"]?.ToString(),
+                    Description = json["weather"]?[0]?["description"]?.ToString(),
+                    Icon = json["weather"]?[0]?["icon"]?.ToString(),
+                    TemperatureKelvin = temperatureKelvin,
+                    TemperatureCelsius = temperatureKelvin - 273.15,
+                    TemperatureFahrenheit = (temperatureKelvin - 273.15) * 9 / 5 + 32,
+                    FeelsLikeKelvin = feelsLikeKelvin,
+                    FeelsLikeCelsius = feelsLikeKelvin - 273.15,
+                    FeelsLikeFahrenheit = (feelsLikeKelvin - 273.15) * 9 / 5 + 32,
+                    Humidity = (int?)json["main"]?["humidity"] ?? 0,
+                    WindSpeed = (double?)json["wind"]?["speed"] ?? 0,
+                };
+
+                return weatherData;
             }
 
             return null;
         }
-
     }
 }

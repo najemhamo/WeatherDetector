@@ -1,7 +1,9 @@
+using Models;
+
 namespace Services
 {
     public interface IWeatherService
     {
-        Task<string> GetWeatherAsync(string city);
+        Task<WeatherData> GetWeatherAsync(string city);
     }
 }
