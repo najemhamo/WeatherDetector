@@ -5,38 +5,46 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.searchBar {
+  border-radius: 0.5vw;
+  font-size: 1vw;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.searchBtn {
+  font-size: 1vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.divContainer {
+  background-color: #2E335A;
+  border-radius: 2vw;
+  margin-top: 1vw;
+  width: 70vw;
+  height: 30vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card {
-  padding: 2em;
+.divContainer div {
+  background-color: #47309B;
+  border-radius: 1.5vw;
+  width: 20vw;
+  height: 60%;
 }
 
-.read-the-docs {
-  color: #888;
+
+
+.weatherIcon {
+  position: fixed;
+  right: 40%;
+  width: 5vw;
+}
+
+.weatherNumber {
+  font-size: 2.8vw;
+}
+
+.weatherCity {
+  font-size: 1.5vw;
 }
