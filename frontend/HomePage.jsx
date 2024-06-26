@@ -40,7 +40,7 @@ export default function HomePage()
             <body>
                 <div className="divContainer">
                     <div>
-                        <h2></h2>
+                        <h2>{weatherInfo && weatherInfo}</h2>
                     </div>
                 </div>
             </body>
