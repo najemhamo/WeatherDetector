@@ -32,3 +32,19 @@
   width: 20vw;
   height: 60%;
 }
+
+
+
+.weatherIcon {
+  position: fixed;
+  right: 40%;
+  width: 5vw;
+}
+
+.weatherNumber {
+  font-size: 2.8vw;
+}
+
+.weatherCity {
+  font-size: 1.5vw;
+}

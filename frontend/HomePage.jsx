@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 export default function HomePage()
 {
     const [searchedCity, setSearchedCity] = useState("")
-    const [weatherInfo, setWeatherInfo] = useState(null)
+    const [weatherInfo, setWeatherInfo] = useState("")
 
     // GET weather information
     useEffect(() => {
         if (searchedCity === "")
             return
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=47cf5fe28528bd8ac7bf9585d0c70044`)
+        fetch(`https://localhost:7021/weather/${searchedCity}`)
         .then((response) => response.json())
         .then((data) => {
-            console.log("DATA", data)
+            data.icon = `https://openweathermap.org/img/wn/${data.icon}@2x.png`
             setWeatherInfo(data)
         })
     }, [searchedCity])
@@ -40,7 +40,9 @@ export default function HomePage()
             <body>
                 <div className="divContainer">
                     <div>
-                        <h2>{weatherInfo && weatherInfo}</h2>
+                        <img className="weatherIcon" src={weatherInfo.icon}></img>
+                        <h2 className="weatherNumber">{Number(weatherInfo.temperatureCelsius).toFixed(1)} °C</h2>
+                        <p className="weatherCity">{weatherInfo.city} {weatherInfo.country}</p>
                     </div>
                 </div>
             </body>
