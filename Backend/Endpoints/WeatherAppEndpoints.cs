@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace Endpoints
 {
@@ -13,9 +14,18 @@ namespace Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        private static async Task<IActionResult> GetWeatherByCity(string city)
+        private static async Task<IResult> GetWeatherByCity(string city, IWeatherService weatherService)
         {
-            return null;
+            var weatherData = await weatherService.GetWeatherAsync(city);
+
+            if (weatherData == null)
+            {
+                return TypedResults.NotFound();
+            }
+            else
+            {
+                return TypedResults.Ok(weatherData);
+            }
         }
 
     }
