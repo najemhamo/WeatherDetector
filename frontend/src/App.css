@@ -12,6 +12,7 @@
 
 .searchBtn {
   font-size: 1vw;
+  color: white;
 }
 
 .divContainer {
@@ -19,7 +20,7 @@
   border-radius: 2vw;
   margin-top: 1vw;
   width: 70vw;
-  height: 30vw;
+  height: 40vw;
 
   display: flex;
   align-items: center;
@@ -30,21 +31,32 @@
   background-color: #47309B;
   border-radius: 1.5vw;
   width: 20vw;
-  height: 60%;
+  height: 90%;
 }
 
 
 
 .weatherIcon {
-  position: fixed;
-  right: 40%;
   width: 5vw;
 }
 
 .weatherNumber {
   font-size: 2.8vw;
+  margin-top: 0;
+}
+
+.weatherText {
+  font-size: 1.5vw;
+  font-weight: normal;
 }
 
 .weatherCity {
-  font-size: 1.5vw;
+  font-size: 2vw;
+  margin-top: 0;
+}
+
+.weatherDesc {
+  font-size: 2vw;
+  margin-top: 5vw;
+  margin-bottom: 1vw;
 }

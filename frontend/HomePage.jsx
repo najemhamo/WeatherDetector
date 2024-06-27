@@ -14,6 +14,9 @@ export default function HomePage()
         .then((response) => response.json())
         .then((data) => {
             data.icon = `https://openweathermap.org/img/wn/${data.icon}@2x.png`
+            data.description =  data.description.charAt(0).toUpperCase() +  data.description.slice(1)
+
+            console.log("DATA", data)
             setWeatherInfo(data)
         })
     }, [searchedCity])
@@ -42,7 +45,12 @@ export default function HomePage()
                     <div>
                         <img className="weatherIcon" src={weatherInfo.icon}></img>
                         <h2 className="weatherNumber">{Number(weatherInfo.temperatureCelsius).toFixed(1)} °C</h2>
-                        <p className="weatherCity">{weatherInfo.city} {weatherInfo.country}</p>
+                        <h3 className="weatherText">Feels like: {Number(weatherInfo.feelsLikeCelsius).toFixed(1)}</h3>
+                        <h3 className="weatherText">Humidity: {weatherInfo.humidity}</h3>
+                        <h3 className="weatherText">Wind speed: {weatherInfo.windSpeed}</h3>
+
+                        <h3 className="weatherDesc">{weatherInfo.description}</h3>
+                        {weatherInfo && <p className="weatherCity">{weatherInfo.city}, {weatherInfo.country}</p>}
                     </div>
                 </div>
             </body>
