@@ -50,7 +50,7 @@ export default function HomePage()
                         <h3 className="weatherText">Wind speed: {weatherInfo.windSpeed}</h3>
 
                         <h3 className="weatherDesc">{weatherInfo.description}</h3>
-                        <p className="weatherCity">{weatherInfo.city} {weatherInfo.country}</p>
+                        {weatherInfo && <p className="weatherCity">{weatherInfo.city}, {weatherInfo.country}</p>}
                     </div>
                 </div>
             </body>
