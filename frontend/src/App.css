@@ -60,3 +60,11 @@
   margin-top: 5vw;
   margin-bottom: 1vw;
 }
+
+.weatherInfo {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #748cf5;
+}
