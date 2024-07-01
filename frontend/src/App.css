@@ -65,6 +65,15 @@
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 2vw;
   background-color: #748cf5;
+  list-style-type: none;
+  margin-right: 2vw;
+}
+
+.closeBtn {
+  background-color: #748cf5;
+  color: white;
+  display: block;
+  font-size: 2vw;
 }
