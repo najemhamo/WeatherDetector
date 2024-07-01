@@ -32,11 +32,11 @@ namespace Services
 
                 var weatherData = new WeatherData
                 {
-                    City = json["name"]?.ToString(),
-                    Condition = json["weather"]?[0]?["main"]?.ToString(),
-                    Country = json["sys"]?["country"]?.ToString(),
-                    Description = json["weather"]?[0]?["description"]?.ToString(),
-                    Icon = json["weather"]?[0]?["icon"]?.ToString(),
+                    City = json["name"]?.ToString() ?? string.Empty,
+                    Condition = json["weather"]?[0]?["main"]?.ToString() ?? string.Empty,
+                    Country = json["sys"]?["country"]?.ToString() ?? string.Empty,
+                    Description = json["weather"]?[0]?["description"]?.ToString() ?? string.Empty,
+                    Icon = json["weather"]?[0]?["icon"]?.ToString() ?? string.Empty,
                     TemperatureKelvin = temperatureKelvin,
                     TemperatureCelsius = temperatureKelvin - 273.15,
                     TemperatureFahrenheit = (temperatureKelvin - 273.15) * 9 / 5 + 32,
@@ -50,7 +50,7 @@ namespace Services
                 return weatherData;
             }
 
-            return null;
+            throw new Exception("Failed to retrieve weather data.");
         }
     }
 }

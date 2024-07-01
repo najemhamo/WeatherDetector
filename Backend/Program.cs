@@ -38,7 +38,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
 app.ConfigureWeatherAppEndpoints();
 
 app.Run();
