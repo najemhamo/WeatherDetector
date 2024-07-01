@@ -12,12 +12,19 @@ export default function HomePage()
 
         const lastCity = searchedCities[searchedCities.length - 1];
 
+        // Checks if "weatherInfo" is the same and won't need updating
+        for (let i = 0; i < weatherInfo.length; i++)
+        {
+            if (weatherInfo[i].searchedName === lastCity.searchedName)
+                return
+        }
+
         fetch(`https://localhost:7021/weather/${lastCity}`)
         .then((response) => response.json())
         .then((data) => {
             data.icon = `https://openweathermap.org/img/wn/${data.icon}@2x.png`
-            data.description =  data.description.charAt(0).toUpperCase() +  data.description.slice(1)
-            console.log("DATA", data)
+            data.description =  data.description.charAt(0).toUpperCase() + data.description.slice(1)
+            data.searchedName = lastCity
 
             setWeatherInfo((prevData) => {
                 let updatedData = [...prevData];
@@ -52,6 +59,17 @@ export default function HomePage()
             }
     };
 
+    const deleteCity = (index) =>
+    {
+        const tmpWeatherCity = weatherInfo.filter((weather, i) => {
+            if (index === i) return
+            else return weather
+        })
+
+        setWeatherInfo([...tmpWeatherCity])
+        setsearchedCities([...tmpWeatherCity])
+    }
+
     return (
         <>
             <header>
@@ -72,28 +90,29 @@ export default function HomePage()
                 <div className="divContainer">
                     {weatherInfo.map((info, index) => (
                         <li key={index} className="weatherInfo">
-                        <img className="weatherIcon" src={info.icon}>
-                        </img>
-                        <h2 className="weatherNumber">
-                            {Number(info.temperatureCelsius).toFixed(1)} °C
-                        </h2>
-                        <h3 className="weatherText">
-                            Feels like: {Number(info.feelsLikeCelsius).toFixed(1)}
-                        </h3>
-                        <h3 className="weatherText">
-                            Humidity: {info.humidity}
-                        </h3>
-                        <h3 className="weatherText">
-                            Wind speed: {info.windSpeed}
-                        </h3>
-                        <h3 className="weatherDesc">
-                            {info.description}
-                        </h3>
-                        {
-                        info && 
-                        <p className="weatherCity">
-                            {info.city}, {info.country}
-                        </p>}
+                            <button className="closeBtn" onClick={() => deleteCity(index)}>X</button>
+                            <img className="weatherIcon" src={info.icon}>
+                            </img>
+                            <h2 className="weatherNumber">
+                                {Number(info.temperatureCelsius).toFixed(1)} °C
+                            </h2>
+                            <h3 className="weatherText">
+                                Feels like: {Number(info.feelsLikeCelsius).toFixed(1)}
+                            </h3>
+                            <h3 className="weatherText">
+                                Humidity: {info.humidity}
+                            </h3>
+                            <h3 className="weatherText">
+                                Wind speed: {info.windSpeed}
+                            </h3>
+                            <h3 className="weatherDesc">
+                                {info.description}
+                            </h3>
+                            {
+                            info && 
+                            <p className="weatherCity">
+                                {info.city}, {info.country}
+                            </p>}
                         </li>
                     ))}
                 </div>
