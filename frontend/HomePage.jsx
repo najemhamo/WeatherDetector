@@ -83,12 +83,12 @@ export default function HomePage() {
               <h2 className="weatherNumber">
                 {Number(info.temperatureCelsius).toFixed(1)} °C
               </h2>
+              <h3 className="weatherDesc">{info.description}</h3>
               <h3 className="weatherText">
                 Feels like: {Number(info.feelsLikeCelsius).toFixed(1)}
               </h3>
               <h3 className="weatherText">Humidity: {info.humidity}</h3>
               <h3 className="weatherText">Wind speed: {info.windSpeed}</h3>
-              <h3 className="weatherDesc">{info.description}</h3>
               {info && (
                 <p className="weatherCity">
                   {info.city}, {info.country}
