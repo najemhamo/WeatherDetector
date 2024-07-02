@@ -6,35 +6,36 @@
 }
 
 .searchBar {
-  border-radius: 0.5vw;
-  font-size: 1vw;
+  padding: 10px;
+  font-size: 1.5vw;
+  width: 30vw;
+  border-radius: 1vw;
+  border: 1px solid #ddd;
+  margin-right: 1vw;
 }
 
 .searchBtn {
-  font-size: 1vw;
+  padding: 10px;
+  font-size: 1.5vw;
+  border-radius: 1vw;
+  background-color: #2e335a;
   color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .divContainer {
-  background-color: #2E335A;
+  background-color: #2e335a;
   border-radius: 2vw;
-  margin-top: 1vw;
+  margin: 0 auto;
   width: 70vw;
   height: 40vw;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap; /* Ensuring that cards wrap within the container */
+  overflow: hidden; /* Prevent overflow from showing */
 }
-
-.divContainer div {
-  background-color: #47309B;
-  border-radius: 1.5vw;
-  width: 20vw;
-  height: 90%;
-}
-
-
 
 .weatherIcon {
   width: 5vw;
@@ -57,18 +58,21 @@
 
 .weatherDesc {
   font-size: 2vw;
-  margin-top: 5vw;
+  margin-top: 1vw;
   margin-bottom: 1vw;
 }
 
 .weatherInfo {
-  margin-bottom: 20px;
+  width: 20vw;
+  height: 30vw;
+  margin-bottom: 2vw;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 2vw;
   background-color: #748cf5;
   list-style-type: none;
   margin-right: 2vw;
+  box-sizing: border-box;
 }
 
 .closeBtn {
