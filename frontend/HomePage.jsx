@@ -4,13 +4,11 @@ export default function HomePage() {
   const [searchedCities, setsearchedCities] = useState([]);
   const [weatherInfo, setWeatherInfo] = useState([]);
 
-  // GET weather information
   useEffect(() => {
     if (searchedCities.length === 0) return;
 
     const lastCity = searchedCities[searchedCities.length - 1];
 
-    // Checks if "weatherInfo" is the same and won't need updating
     for (let i = 0; i < weatherInfo.length; i++) {
       if (weatherInfo[i].searchedName === lastCity) return;
     }
@@ -50,10 +48,7 @@ export default function HomePage() {
   };
 
   const deleteCity = (index) => {
-    const tmpWeatherCity = weatherInfo.filter((weather, i) => {
-      if (index === i) return;
-      else return weather;
-    });
+    const tmpWeatherCity = weatherInfo.filter((weather, i) => index !== i);
 
     setWeatherInfo([...tmpWeatherCity]);
     setsearchedCities([...tmpWeatherCity.map((city) => city.searchedName)]);
@@ -62,12 +57,12 @@ export default function HomePage() {
   return (
     <>
       <header className={searchedCities.length === 0 ? "centeredHeader" : ""}>
-        <h1>Weather Detector</h1>
+        <h1 className="title">Weather Detector</h1>
         <form onSubmit={checkCity}>
           <input
             className="searchBar"
             name="cityName"
-            placeholder="Search for a city"
+            placeholder="🔍 Search for a city"
           ></input>
           <button className="searchBtn">Search</button>
         </form>
