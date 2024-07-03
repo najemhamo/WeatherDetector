@@ -25,6 +25,7 @@ body {
 .title {
   color: #e5ceff;
   font-size: 3vw;
+  font-family: monospace;
 }
 
 .searchBar {
