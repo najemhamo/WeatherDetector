@@ -9,6 +9,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddScoped<IGeocodingService, GeocodingService>();
+builder.Services.AddScoped<ITimeZoneService, TimeZoneService>();
+
+builder.Services.AddLogging(config =>
+{
+    config.AddConsole();
+    config.AddDebug();
+});
+
 
 // Connection to the frontend
 builder.Services.AddCors(options =>
