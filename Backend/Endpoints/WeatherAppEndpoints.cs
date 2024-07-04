@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using Models;
 
 namespace Endpoints
 {
@@ -14,44 +15,30 @@ namespace Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        private static async Task<IResult> GetWeatherByCity(string city, IWeatherService weatherService)
+        private static async Task<IResult> GetWeatherByCity(string city, IWeatherService weatherService, ITimeZoneService timeZoneService, IGeocodingService geocodingService)
         {
             {
                 var weatherData = await weatherService.GetWeatherAsync(city);
+                var coordinates = await geocodingService.GetCoordinates(city);
+                var localTime = await timeZoneService.GetLocalTime(coordinates.Latitude, coordinates.Longitude);
 
-                if (weatherData == null)
+                if (weatherData == null || coordinates == null || localTime == null)
                 {
                     return TypedResults.NotFound();
                 }
+
                 else
                 {
-                    return TypedResults.Ok(weatherData);
+                    var response = new WeatherResponse
+                    {
+                        WeatherData = weatherData,
+                        LocalTime = localTime
+                    };
+
+                    return TypedResults.Ok(response);
                 }
             }
 
         }
-
-
-        // [ProducesResponseType(StatusCodes.Status200OK)]
-        // [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        // [ProducesResponseType(StatusCodes.Status404NotFound)]
-        // private static async Task<IResult> GetCurrentTimeByCity(string city, ITimeZoneService timeZoneService, IGeocodingService geocodingService)
-        // {
-
-        //     var coordinates = await geocodingService.GetCoordinates(city);
-        //     var localTime = await timeZoneService.GetLocalTime(coordinates.Latitude, coordinates.Longitude);
-        //     if (coordinates == null)
-        //     {
-        //         return TypedResults.NotFound();
-        //     }
-        //     if (localTime == null)
-        //     {
-        //         return TypedResults.NotFound();
-        //     }
-        //     else
-        //     {
-        //         return TypedResults.Ok(localTime);
-        //     }
-        // }
     }
 }
