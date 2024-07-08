@@ -24,9 +24,9 @@ Weather Detector is a web application that allows you to search for cities and p
 
 The application depends on several APIs which are:
 
-- [Geocoding API](http://api.openweathermap.org/geo/) - Geocoding API is a simple tool that we have developed to ease the search for locations while working with geographic names and coordinates.
+- [Geocoding API](https://openweathermap.org/api/geocoding-api#direct) - Geocoding API is a simple tool that we have developed to ease the search for locations while working with geographic names and coordinates.
 - [Open Weather Map API](https://api.openweathermap.org) - Access current weather data for any location on Earth!
-- [TimeZone Api](http://api.timezonedb.com) - TimeZoneDB provides a free time zone database for cities of the world.
+- [TimeZone Api](https://timezonedb.com/) - TimeZoneDB provides a free time zone database for cities of the world.
 
 
 ## Installation
