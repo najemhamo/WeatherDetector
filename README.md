@@ -1,6 +1,6 @@
 # Weather Detector
 
-Weather Detector is a web application that allows you to search for cities and provides the current weather details along with the local time in that city.
+Weather Detector is a web application that allows you to search for cities and will provides the current weather details along with the local time in that city.
 
 ![GitHub License](https://img.shields.io/github/license/najemhamo/WeatherDetector)
 
@@ -10,7 +10,7 @@ Weather Detector is a web application that allows you to search for cities and p
 
 - 🌦️ Real-time Weather Data: Get the latest weather information for any city.
 - 🌍 Time Zone Display: See the current time in the searched city.
-- 🔍 Easy Search: Simply type in the city name to get instant results.
+- 🔍 Easy Search: Simply type in the city name for instant results.
 - 📊 Detailed Weather Information: Temperature, humidity, wind speed, and more.
 - 🎨 Responsive Design: Works on all devices, from desktops to smartphones.
 - ✨ Magic ✨
